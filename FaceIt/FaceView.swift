@@ -8,22 +8,56 @@
 
 import UIKit
 @IBDesignable
-class FaceView: UIView {
+class FaceView: UIView	 {
+    
+    // Public API
     
     @IBInspectable
-    var scale: CGFloat = 0.8
+    var scale: CGFloat = 0.7 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     @IBInspectable
-    var eyesOpen: Bool = true
+    var eyesOpen: Bool = true {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     @IBInspectable
-    var mouthCurvature: Double = 0.5 //1.0 is full smile and -1.0 is full frown
+    var mouthCurvature: Double = 0.5 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }//1.0 is full smile and -1.0 is full frown
 
     @IBInspectable
-    var lineWidth: CGFloat = 5.0
+    var lineWidth: CGFloat = 5.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     @IBInspectable
-    var color: UIColor = UIColor.blue
+    var color: UIColor = UIColor.blue {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    @objc func changeScale(byReactingTo pinchRecognizer: UIPinchGestureRecognizer) {
+        switch pinchRecognizer.state {
+        case .changed,.ended:
+            scale *= pinchRecognizer.scale
+            pinchRecognizer.scale = 1
+        default:
+            break
+        }
+    }
+    
+    // Private Implementation
     
     private var skullRadius: CGFloat {
         return min(bounds.size.width, bounds.size.height) / 2 * scale
