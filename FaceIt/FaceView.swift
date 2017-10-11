@@ -7,40 +7,40 @@
 //
 
 import UIKit
-@IBDesignable
+//@IBDesignable
 class FaceView: UIView	 {
     
     // Public API
     
-    @IBInspectable
+    //@IBInspectable
     var scale: CGFloat = 0.7 {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    @IBInspectable
+    //@IBInspectable
     var eyesOpen: Bool = true {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    @IBInspectable
+    //@IBInspectable
     var mouthCurvature: Double = 0.5 {
         didSet {
             setNeedsDisplay()
         }
     }//1.0 is full smile and -1.0 is full frown
 
-    @IBInspectable
+    //@IBInspectable
     var lineWidth: CGFloat = 5.0 {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    @IBInspectable
+    //@IBInspectable
     var color: UIColor = UIColor.blue {
         didSet {
             setNeedsDisplay()
